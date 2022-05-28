@@ -8,8 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="random"
-# re5et tjkirch cloud
+ZSH_THEME="af-magic"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +70,15 @@ ZSH_THEME="random"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions you-should-use)
+plugins=(
+	git
+	zsh-syntax-highlighting
+	zsh-autosuggestions
+	you-should-use
+	docker
+	docker-compose
+	poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,11 +108,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias open=wslview
+alias open="powershell.exe start"
+# alias open=wslview
 alias wp="wslpath -w"
+
 alias vi=nvim
 alias vim=nvim
+alias p=poetry
+alias cat="batcat --paging=never"
 
-LS_COLORS="ow=01;34;40" && export LS_COLORS
+function hborpi() {
+	scp -r $1 pi@raspberrypi.local:~/
+}
+
+# Better color in wsl ls color
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# LS_COLORS="ow=34;40" && export LS_COLORS
+
 export PATH=$PATH:"/home/gene/.local/bin"
+export PATH="$HOME/.poetry/bin:$PATH"
 
