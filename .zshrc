@@ -124,6 +124,7 @@ function hborpi() {
 # Better color in wsl ls color
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 # LS_COLORS="ow=34;40" && export LS_COLORS
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 export PATH=$PATH:"/home/gene/.local/bin"
 export PATH="$HOME/.poetry/bin:$PATH"
